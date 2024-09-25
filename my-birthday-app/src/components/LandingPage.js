@@ -1,72 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
-
-const GiftBox = styled.div`
-  width: 150px;
-  height: 150px;
-  background-color: #e74c3c;
-  position: relative;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-`;
-
-const Ribbon = styled.div`
-  position: absolute;
-  background-color: #fff;
-  width: 20px;
-  height: 150px;
-  top: 0;
-  left: calc(50% - 10px);
-`;
-
-const RibbonHorizontal = styled.div`
-  position: absolute;
-  background-color: #fff;
-  width: 150px;
-  height: 20px;
-  top: calc(50% - 10px);
-  left: 0;
-`;
-
-const Lid = styled(motion.div)`
-  width: 150px;
-  height: 30px;
-  background-color: #c0392b;
-  position: absolute;
-  top: -30px;
-  left: 0;
-  border-radius: 10px 10px 0 0;
-`;
+import { Player } from '@lottiefiles/react-lottie-player';
+import giftBoxAnimation from '../animations/gift-box-animation.json';
+import './LandingPage.css';
 
 const LandingPage = () => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // For scaling animation
+  const [isPaused, setIsPaused] = useState(false); // For pausing the animation
+  const [isClicked, setIsClicked] = useState(false); // For click/open animation
+  const playerRef = useRef(null); // To control the Lottie Player instance
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    setIsClicked(true);
+  useEffect(() => {
+    // Start scaling animation after a short delay
     setTimeout(() => {
-      navigate('/home');
-    }, 2000); // Animation delay
+      setIsVisible(true);
+    }, 1500);
+
+    // Automatically pause the animation after 2.2 seconds
+    setTimeout(() => {
+      if (playerRef.current) {
+        playerRef.current.pause();
+        setIsPaused(true); // Show the "Click Me!" banner
+      }
+    }, 2200);
+  }, []);
+
+  const handleBoxClick = () => {
+    setIsPaused(false); // Hide the "Click Me!" banner
+    setIsClicked(true); // Trigger opening animation
+    playerRef.current.play(); // Resume the animation
+  };
+
+  const handleAnimationComplete = () => {
+    setTimeout(() => {
+      navigate('/home'); // Redirect after animation completes
+    }, 10);
   };
 
   return (
-    <div className="landing-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <GiftBox onClick={handleClick}>
-        <Ribbon />
-        <RibbonHorizontal />
-        {!isClicked && <span style={{ color: 'white', fontSize: '20px' }}>Click me</span>}
-        <Lid
-          initial={{ y: 0 }}
-          animate={isClicked ? { y: -60 } : { y: 0 }}
-          transition={{ duration: 1 }}
+    <div className="landing-page">
+      <div className={`gift-box-container ${isVisible ? 'visible' : ''} ${isClicked ? 'clicked' : ''}`}>
+        <Player
+          ref={playerRef}
+          autoplay
+          loop={false}
+          src={giftBoxAnimation}
+          style={{ height: '300px', width: '300px' }}
+          onClick={handleBoxClick} // Resume animation on box click
+          onEvent={(event) => {
+            if (event === 'complete') {
+              handleAnimationComplete();
+            }
+          }}
         />
-      </GiftBox>
+        {isPaused && (
+          <div className="click-message">
+            <p className="click-text">Click Me!</p>
+            <button className="click-button" onClick={handleBoxClick}></button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

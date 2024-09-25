@@ -1,0 +1,53 @@
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://i.imgur.com/pzmIwsA.png');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.gift-box-container {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.gift-box-container.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gift-box-container.clicked {
+  transform: scale(1.2); /* Slight scale up when clicked */
+  transition: transform 0.5s ease;
+}
+
+.click-message {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.click-text {
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+}
+
+.click-button {
+  opacity: 0; /* Make button invisible but clickable */
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
