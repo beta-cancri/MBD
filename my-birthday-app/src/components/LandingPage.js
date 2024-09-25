@@ -21,13 +21,13 @@ const LandingPage = () => {
     setTimeout(() => {
       if (playerRef.current) {
         playerRef.current.pause();
-        setIsPaused(true); // Show the "Click Me!" banner
+        setIsPaused(true); // Show the "Click Me!" image
       }
     }, 2200);
   }, []);
 
   const handleBoxClick = () => {
-    setIsPaused(false); // Hide the "Click Me!" banner
+    setIsPaused(false); // Hide the "Click Me!" image
     setIsClicked(true); // Trigger opening animation
     playerRef.current.play(); // Resume the animation
   };
@@ -46,7 +46,7 @@ const LandingPage = () => {
           autoplay
           loop={false}
           src={giftBoxAnimation}
-          style={{ height: '300px', width: '300px' }}
+          style={{ height: '300px', width: '300px', position: 'relative' }}
           onClick={handleBoxClick} // Resume animation on box click
           onEvent={(event) => {
             if (event === 'complete') {
@@ -56,10 +56,15 @@ const LandingPage = () => {
         />
         {isPaused && (
           <div className="click-message">
-            <p className="click-text">Click Me!</p>
-            <button className="click-button" onClick={handleBoxClick}></button>
+            <img
+              src="https://i.imgur.com/MR1pOsi.png"
+              alt="Click Me!"
+              className="click-image"
+            />
           </div>
         )}
+        {/* Invisible but clickable button over the animation */}
+        <button className="click-button" onClick={handleBoxClick}></button>
       </div>
     </div>
   );
