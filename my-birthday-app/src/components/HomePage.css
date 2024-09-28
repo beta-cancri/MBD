@@ -1,81 +1,38 @@
-/* Set the background image for the homepage */
 .photo-collage {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
   position: relative;
   height: 100vh;
-  width: 100%;
-  padding: 20px;
-  background-image: url('https://i.imgur.com/i3RNWGh.png');
-  background-size: contain;
+  width: 100vw;
+  background-image: url('https://i.imgur.com/y7H21KA.png');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Style for the collage photos */
-.collage-photo {
-  width: 200px; /* Adjust size as needed */
-  height: auto;
+/* Container for each photo, including the resize handle */
+.collage-container {
   position: absolute;
+  cursor: grab;
+}
+
+/* Image style */
+.collage-photo {
+  width: 100%; /* Make the image take up the full width of the container */
+  height: auto; /* Maintain aspect ratio */
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
-  cursor: pointer;
-  object-fit: cover;
 }
 
-/* Example random rotations and positions */
-.collage-photo:nth-child(1) {
-  top: 50px;
-  left: 80px;
-  transform: rotate(-10deg);
+.collage-container:active {
+  cursor: grabbing;
 }
 
-.collage-photo:nth-child(2) {
-  top: 180px;
-  left: 300px;
-  transform: rotate(5deg);
-}
-
-.collage-photo:nth-child(3) {
-  top: 320px;
-  left: 180px;
-  transform: rotate(-15deg);
-}
-
-.collage-photo:nth-child(4) {
-  top: 80px;
-  left: 600px;
-  transform: rotate(10deg);
-}
-
-.collage-photo:nth-child(5) {
-  top: 260px;
-  left: 800px;
-  transform: rotate(-8deg);
-}
-
-.collage-photo:nth-child(6) {
-  top: 400px;
-  left: 500px;
-  transform: rotate(12deg);
-}
-
-.collage-photo:nth-child(7) {
-  top: 550px;
-  left: 200px;
-  transform: rotate(-5deg);
-}
-
-.collage-photo:nth-child(8) {
-  top: 600px;
-  left: 700px;
-  transform: rotate(7deg);
-}
-
-/* Optional: Add a hover effect to bring the image forward */
-.collage-photo:hover {
-  transform: scale(1.05) rotate(0);
-  z-index: 10; /* Bring to front */
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: nwse-resize;
 }
