@@ -1,65 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './HomePage.css';
 
 const HomePage = () => {
   const [positions, setPositions] = useState({
-    collagePhoto1: { top: 50, left: 80, width: 200 },
-    collagePhoto2: { top: 180, left: 300, width: 200 },
-    collagePhoto3: { top: 320, left: 180, width: 200 },
-    collagePhoto4: { top: 80, left: 600, width: 200 },
-    collagePhoto5: { top: 260, left: 800, width: 200 },
-    collagePhoto6: { top: 400, left: 500, width: 200 },
-    collagePhoto7: { top: 550, left: 200, width: 200 },
-    collagePhoto8: { top: 600, left: 700, width: 200 },
+    collagePhoto1: { top: 50, left: 80 },
+    collagePhoto2: { top: 180, left: 300 },
+    collagePhoto3: { top: 320, left: 180 },
+    collagePhoto4: { top: 80, left: 600 },
+    collagePhoto5: { top: 260, left: 800 },
+    collagePhoto6: { top: 400, left: 500 },
+    collagePhoto7: { top: 550, left: 200 },
+    collagePhoto8: { top: 600, left: 700 },
   });
-  const resizingRef = useRef(null); // To store the currently resizing image
-  const initialMousePos = useRef({ x: 0, y: 0 }); // To track mouse position when resizing starts
 
-  // Handle dragging end (for moving images)
   const handleDragEnd = (e, photoKey) => {
+    // Update the position of the image after dragging
     const newPositions = {
       ...positions,
       [photoKey]: {
-        ...positions[photoKey],
-        top: e.clientY - positions[photoKey].width / 2,
-        left: e.clientX - positions[photoKey].width / 2,
+        top: e.clientY - 100, // Adjust to center the image during drag
+        left: e.clientX - 100, // Adjust to center the image during drag
       },
     };
     setPositions(newPositions);
-  };
 
-  // Handle mouse down on the resize handle
-  const handleMouseDown = (e, photoKey) => {
-    resizingRef.current = photoKey;
-    initialMousePos.current = { x: e.clientX, y: e.clientY };
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-  };
-
-  // Handle mouse movement while resizing
-  const handleMouseMove = (e) => {
-    if (resizingRef.current) {
-      const photoKey = resizingRef.current;
-      const dx = e.clientX - initialMousePos.current.x; // Calculate distance moved horizontally
-      const newWidth = Math.max(100, positions[photoKey].width + dx); // Minimum width is 100px
-
-      const newPositions = {
-        ...positions,
-        [photoKey]: {
-          ...positions[photoKey],
-          width: newWidth,
-        },
-      };
-      setPositions(newPositions);
-      initialMousePos.current = { x: e.clientX, y: e.clientY }; // Update mouse position
-    }
-  };
-
-  // Handle mouse up (end resizing)
-  const handleMouseUp = () => {
-    resizingRef.current = null;
-    document.removeEventListener('mousemove', handleMouseMove);
-    document.removeEventListener('mouseup', handleMouseUp);
+    // Log the new coordinates to the console
+    console.log(`${photoKey} position: `, newPositions[photoKey]);
   };
 
   return (
@@ -71,7 +37,7 @@ const HomePage = () => {
           style={{
             top: `${positions[photoKey].top}px`,
             left: `${positions[photoKey].left}px`,
-            width: `${positions[photoKey].width}px`,
+            width: '200px',
           }}
           draggable="true"
           onDragEnd={(e) => handleDragEnd(e, photoKey)}
@@ -82,17 +48,13 @@ const HomePage = () => {
             className="collage-photo"
             style={{ width: '100%' }}
           />
-          <div
-            className="resize-handle"
-            onMouseDown={(e) => handleMouseDown(e, photoKey)} // Resize when clicking and dragging
-          />
         </div>
       ))}
     </div>
   );
 };
 
-// Helper to get the correct image src
+// Helper function to get the correct image src
 const getPhotoSrc = (photoKey) => {
   switch (photoKey) {
     case 'collagePhoto1':
