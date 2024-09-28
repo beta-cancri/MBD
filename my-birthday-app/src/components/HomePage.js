@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './HomePage.css';
 
 const HomePage = () => {
@@ -11,21 +12,28 @@ const HomePage = () => {
     collagePhoto6: { top: 400, left: 500 },
     collagePhoto7: { top: 550, left: 200 },
     collagePhoto8: { top: 600, left: 700 },
+    collagePhoto9: { top: 700, left: 500 },
+    collagePhoto10: { top: 750, left: 400 },
+    collagePhoto11: { top: 100, left: 950 },
+    collagePhoto12: { top: 300, left: 1100 },
   });
 
+  const navigate = useNavigate(); // Initialize navigate
+
   const handleDragEnd = (e, photoKey) => {
-    // Update the position of the image after dragging
     const newPositions = {
       ...positions,
       [photoKey]: {
-        top: e.clientY - 100, // Adjust to center the image during drag
-        left: e.clientX - 100, // Adjust to center the image during drag
+        top: e.clientY - 100,
+        left: e.clientX - 100,
       },
     };
     setPositions(newPositions);
-
-    // Log the new coordinates to the console
     console.log(`${photoKey} position: `, newPositions[photoKey]);
+  };
+
+  const handleClick = (photoKey) => {
+    navigate(`/photo/${photoKey}`);
   };
 
   return (
@@ -41,9 +49,10 @@ const HomePage = () => {
           }}
           draggable="true"
           onDragEnd={(e) => handleDragEnd(e, photoKey)}
+          onClick={() => handleClick(photoKey)} // Navigate when clicked
         >
           <img
-            src={`https://i.imgur.com/${getPhotoSrc(photoKey)}.png`}
+            src={getPhotoSrc(photoKey)}
             alt=""
             className="collage-photo"
             style={{ width: '100%' }}
@@ -58,21 +67,29 @@ const HomePage = () => {
 const getPhotoSrc = (photoKey) => {
   switch (photoKey) {
     case 'collagePhoto1':
-      return 'SGJkGe6';
+      return 'https://i.imgur.com/2dJolYw.jpg';
     case 'collagePhoto2':
-      return 'zI1pl8w';
+      return 'https://i.imgur.com/MMjOFWJ.jpg';
     case 'collagePhoto3':
-      return 'MrqgIhE';
+      return 'https://i.imgur.com/BubUxsR.jpg';
     case 'collagePhoto4':
-      return 'CGoIHOO';
+      return 'https://i.imgur.com/R6v02On.jpg';
     case 'collagePhoto5':
-      return 'JBn7UEx';
+      return 'https://i.imgur.com/sbndgqM.jpg';
     case 'collagePhoto6':
-      return 'l9Bqnsj';
+      return 'https://i.imgur.com/aKr1ASB.jpg';
     case 'collagePhoto7':
-      return 'lRBpKg1';
+      return 'https://i.imgur.com/7q0Xthx.jpg';
     case 'collagePhoto8':
-      return 'ghMhL8y';
+      return 'https://i.imgur.com/QUM4g1J.jpg';
+    case 'collagePhoto9':
+      return 'https://i.imgur.com/FXIej3p.jpg';
+    case 'collagePhoto10':
+      return 'https://i.imgur.com/T0PPdWx.jpg';
+    case 'collagePhoto11':
+      return 'https://i.imgur.com/S048lb3.jpg';
+    case 'collagePhoto12':
+      return 'https://i.imgur.com/DdY8tjW.jpg';
     default:
       return '';
   }

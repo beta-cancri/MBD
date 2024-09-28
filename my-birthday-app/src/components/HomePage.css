@@ -10,15 +10,22 @@
 
 /* Container for each photo */
 .collage-container {
-  position: absolute; /* Allows free movement */
+  position: absolute;
   cursor: grab;
+  transition: transform 0.3s ease, z-index 0.3s ease;
 }
 
 /* Image style */
 .collage-photo {
-  width: 100%; /* Maintain the image width to match container */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+.collage-container:hover {
+  transform: scale(1.1); /* Slightly enlarge the image */
+  z-index: 10; /* Bring the image to the top */
 }
 
 .collage-container:active {
