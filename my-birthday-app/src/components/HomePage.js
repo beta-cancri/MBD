@@ -1,61 +1,53 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
-  const [positions, setPositions] = useState({
-    collagePhoto1: { top: 50, left: 80 },
-    collagePhoto2: { top: 180, left: 300 },
-    collagePhoto3: { top: 320, left: 180 },
-    collagePhoto4: { top: 80, left: 600 },
-    collagePhoto5: { top: 260, left: 800 },
-    collagePhoto6: { top: 400, left: 500 },
-    collagePhoto7: { top: 550, left: 200 },
-    collagePhoto8: { top: 600, left: 700 },
-    collagePhoto9: { top: 700, left: 500 },
-    collagePhoto10: { top: 750, left: 400 },
-    collagePhoto11: { top: 100, left: 950 },
-    collagePhoto12: { top: 300, left: 1100 },
-  });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Initialize navigate
-
-  const handleDragEnd = (e, photoKey) => {
-    const newPositions = {
-      ...positions,
-      [photoKey]: {
-        top: e.clientY - 100,
-        left: e.clientX - 100,
-      },
-    };
-    setPositions(newPositions);
-    console.log(`${photoKey} position: `, newPositions[photoKey]);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+  }, []);
 
   const handleClick = (photoKey) => {
     navigate(`/photo/${photoKey}`);
   };
 
+  const positions = [
+    { key: 'collagePhoto1', top: 116, left: 620, width: '85px' },
+    { key: 'collagePhoto2', top: 300, left: 210, width: '300px' },    
+    { key: 'collagePhoto3', top: 148, left: 1630, width: '165px' },
+    { key: 'collagePhoto4', top: 750, left: 250, width: '250px' },
+    { key: 'collagePhoto5', top: 560, left: 1200, width: '245px' },
+    { key: 'collagePhoto6', top: 350, left: 500, width: '420px' },
+    { key: 'collagePhoto7', top: 116, left: 470, width: '122px' },
+    { key: 'collagePhoto8', top: 680, left: 800, width: '440px' },
+    { key: 'collagePhoto9', top: 610, left: 450, width: '350px' },
+    { key: 'collagePhoto10', top: 340, left: 850, width: '210px' },
+    { key: 'collagePhoto11', top: 110, left: 1254, width: '385px' },
+    { key: 'collagePhoto12', top: 350, left: 1436, width: '300px' },
+  ];
+
   return (
     <div className="photo-collage">
-      {Object.keys(positions).map((photoKey, index) => (
+      {positions.map((position, index) => (
         <div
           key={index}
-          className="collage-container"
+          className={`collage-container collage-${index + 1} ${isLoaded ? 'in-place' : 'off-screen'}`} 
           style={{
-            top: `${positions[photoKey].top}px`,
-            left: `${positions[photoKey].left}px`,
-            width: '200px',
+            top: `${position.top}px`,
+            left: `${position.left}px`,
+            width: position.width, // Different sizes for each photo container
           }}
-          draggable="true"
-          onDragEnd={(e) => handleDragEnd(e, photoKey)}
-          onClick={() => handleClick(photoKey)} // Navigate when clicked
+          onClick={() => handleClick(position.key)}
         >
           <img
-            src={getPhotoSrc(photoKey)}
+            src={getPhotoSrc(position.key)}
             alt=""
             className="collage-photo"
-            style={{ width: '100%' }}
           />
         </div>
       ))}

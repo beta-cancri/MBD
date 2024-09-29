@@ -8,24 +8,167 @@
   background-repeat: no-repeat;
 }
 
-/* Container for each photo */
+/* Ensure images are completely hidden at the start */
 .collage-container {
+  opacity: 0;
+  visibility: hidden; /* Hidden initially */
   position: absolute;
   cursor: grab;
   transition: transform 0.3s ease, z-index 0.3s ease;
 }
 
-/* Image style */
+/* Image styling to maintain aspect ratio and add a photo-like effect */
 .collage-photo {
   width: 100%;
   height: auto;
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  object-fit: contain; /* Maintain the aspect ratio of the image */
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5); /* Adds a deeper shadow to mimic a photograph */
+  border: 5px solid white; /* A white border to simulate a photo */
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animation for collage 1 */
+.in-place.collage-1 {
+  animation: fly-in-from-left 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* Animation for collage 2 */
+.in-place.collage-2 {
+  animation: fly-in-from-right 1s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Animation for collage 3 */
+.in-place.collage-3 {
+  animation: fly-in-from-top 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+/* Animation for collage 4 */
+.in-place.collage-4 {
+  animation: fly-in-from-bottom 1s ease forwards;
+  animation-delay: 2s;
+}
+
+/* Animation for collage 5 */
+.in-place.collage-5 {
+  animation: fly-in-from-left 1s ease forwards;
+  animation-delay: 2.5s;
+}
+
+/* Animation for collage 6 */
+.in-place.collage-6 {
+  animation: fly-in-from-right 1s ease forwards;
+  animation-delay: 3s;
+}
+
+/* Animation for collage 7 */
+.in-place.collage-7 {
+  animation: fly-in-from-top 1s ease forwards;
+  animation-delay: 3.5s;
+}
+
+/* Animation for collage 8 */
+.in-place.collage-8 {
+  animation: fly-in-from-bottom 1s ease forwards;
+  animation-delay: 4s;
+}
+
+/* Animation for collage 9 */
+.in-place.collage-9 {
+  animation: fly-in-from-left 1s ease forwards;
+  animation-delay: 4.5s;
+}
+
+/* Animation for collage 10 */
+.in-place.collage-10 {
+  animation: fly-in-from-right 1s ease forwards;
+  animation-delay: 5s;
+}
+
+/* Animation for collage 11 */
+.in-place.collage-11 {
+  animation: fly-in-from-top 1s ease forwards;
+  animation-delay: 5.5s;
+}
+
+/* Animation for collage 12 */
+.in-place.collage-12 {
+  animation: fly-in-from-bottom 1s ease forwards;
+  animation-delay: 6s;
+}
+
+/* Fly-in animations */
+@keyframes fly-in-from-left {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100vw);
+  }
+  1% {
+    visibility: visible; /* Make visible at the start of the animation */
+  }
+  100% {
+    opacity: 1;
+    visibility: visible; /* Ensure visibility remains after animation */
+    transform: translateX(0); /* Fly in from the left */
+  }
+}
+
+@keyframes fly-in-from-right {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100vw);
+  }
+  1% {
+    visibility: visible; /* Make visible at the start of the animation */
+  }
+  100% {
+    opacity: 1;
+    visibility: visible; /* Ensure visibility remains after animation */
+    transform: translateX(0); /* Fly in from the right */
+  }
+}
+
+@keyframes fly-in-from-top {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100vh);
+  }
+  1% {
+    visibility: visible; /* Make visible at the start of the animation */
+  }
+  100% {
+    opacity: 1;
+    visibility: visible; /* Ensure visibility remains after animation */
+    transform: translateY(0); /* Fly in from the top */
+  }
+}
+
+@keyframes fly-in-from-bottom {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100vh);
+  }
+  1% {
+    visibility: visible; /* Make visible at the start of the animation */
+  }
+  100% {
+    opacity: 1;
+    visibility: visible; /* Ensure visibility remains after animation */
+    transform: translateY(0); /* Fly in from the bottom */
+  }
 }
 
 /* Hover effect */
 .collage-container:hover {
-  transform: scale(1.1); /* Slightly enlarge the image */
-  z-index: 10; /* Bring the image to the top */
+  transform: scale(1.1);
+  z-index: 10;
 }
 
 .collage-container:active {
