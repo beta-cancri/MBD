@@ -1,9 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'; // Get the photo ID from the route
+import { useParams } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
 const PhotoDetailPage = () => {
-  const { id } = useParams(); // Get the ID of the photo from the URL
+  const { id } = useParams(); // Get the photo ID from the URL
 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
@@ -37,22 +37,18 @@ const PhotoDetailPage = () => {
   };
 
   return (
-    <div
-      className="photo-detail-page"
-      style={{
-        backgroundImage: `url(${getPhotoSrc(id)})`,
-      }}
-    >
-      <div className="photo-text">
+    <div className="photo-detail-container">
+      <div className="photo-detail-image">
+        <img src={getPhotoSrc(id)} alt="Detailed view" />
+      </div>
+      <div className="photo-detail-text">
         <h1>Placeholder Text for {id}</h1>
         <p>Here is some placeholder text for the selected photo.</p>
-
-        {/* YouTube Video Placeholder */}
         <div className="video-container">
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder YouTube video
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder video
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
