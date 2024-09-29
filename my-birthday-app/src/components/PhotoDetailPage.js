@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
 const PhotoDetailPage = () => {
   const { id } = useParams(); // Get the photo ID from the URL
+  const [isHorizontal, setIsHorizontal] = useState(false);
 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
@@ -36,10 +37,16 @@ const PhotoDetailPage = () => {
     }
   };
 
+  const handleImageLoad = (e) => {
+    const image = e.target;
+    const aspectRatio = image.naturalWidth / image.naturalHeight;
+    setIsHorizontal(aspectRatio > 1); // Set if image is horizontal based on aspect ratio
+  };
+
   return (
     <div className="photo-detail-container">
-      <div className="photo-detail-image">
-        <img src={getPhotoSrc(id)} alt="Detailed view" />
+      <div className={`photo-detail-image ${isHorizontal ? 'horizontal' : 'vertical'}`}>
+        <img src={getPhotoSrc(id)} alt="Detailed view" onLoad={handleImageLoad} />
       </div>
       <div className="photo-detail-text">
         <h1>Placeholder Text for {id}</h1>

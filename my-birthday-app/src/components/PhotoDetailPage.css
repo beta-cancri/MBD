@@ -1,43 +1,73 @@
 .photo-detail-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-image: url('https://i.imgur.com/YqcI09T.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 20px;
-    height: 100vh;
-    width: 100vw;
     box-sizing: border-box;
+    overflow: hidden; /* Prevents any overflow */
   }
   
-  /* Container for the image */
-  .photo-detail-image {
-    flex: 1;
-    max-width: 40%; /* Adjust the width of the image container */
+  /* Container for horizontal images */
+  .photo-detail-image.horizontal {
+    max-width: 35%; /* Image container takes up to 80% of the viewport width */
+    max-height: 50vh; /* Image container takes up to 50% of the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
+  }
+  
+  /* Container for vertical images */
+  .photo-detail-image.vertical {
+    max-width: 23%; /* Image container takes up to 40% of the viewport width */
+    max-height: 80vh; /* Image container takes up to 80% of the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
   }
   
   .photo-detail-image img {
-    width: 100%;
-    height: auto;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%; /* Image fits within the container */
+    max-height: 100%; /* Image stays within the container */
+    object-fit: contain; /* Scale image proportionally */
+    border-radius: 8px; /* Rounded corners */
   }
   
   /* Container for the text and video */
   .photo-detail-text {
-    flex: 1;
-    max-width: 55%; /* Adjust the width of the text and video container */
-    padding-left: 20px;
+    max-width: 40%; /* Text container takes up to 40% of viewport width */
+    max-height: 80vh; /* Text container stays within 80% of the viewport height */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enables scrolling for long content */
   }
   
   .photo-detail-text h1 {
-    margin: 0;
     font-size: 2rem;
+    margin-bottom: 10px;
   }
   
   .photo-detail-text p {
-    margin-top: 10px;
     font-size: 1.2rem;
+    margin-bottom: 20px;
   }
   
   .video-container {
