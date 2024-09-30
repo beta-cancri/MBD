@@ -1,76 +1,83 @@
 .photo-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    background-image: url('https://i.imgur.com/YqcI09T.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: hidden; /* Prevents any overflow */
-  }
-  
-  /* Container for horizontal images */
-  .photo-detail-image.horizontal {
-    max-width: 35%; /* Image container takes up to 80% of the viewport width */
-    max-height: 50vh; /* Image container takes up to 50% of the viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
-  }
-  
-  /* Container for vertical images */
-  .photo-detail-image.vertical {
-    max-width: 23%; /* Image container takes up to 40% of the viewport width */
-    max-height: 80vh; /* Image container takes up to 80% of the viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
-  }
-  
-  .photo-detail-image img {
-    max-width: 100%; /* Image fits within the container */
-    max-height: 100%; /* Image stays within the container */
-    object-fit: contain; /* Scale image proportionally */
-    border-radius: 8px; /* Rounded corners */
-  }
-  
-  /* Container for the text and video */
-  .photo-detail-text {
-    max-width: 40%; /* Text container takes up to 40% of viewport width */
-    max-height: 80vh; /* Text container stays within 80% of the viewport height */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    border-radius: 10px;
-    box-sizing: border-box;
-    overflow-y: auto; /* Enables scrolling for long content */
-  }
-  
-  .photo-detail-text h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .photo-detail-text p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  .video-container {
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center items vertically */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  background-image: url('https://i.imgur.com/YqcI09T.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents any overflow */
+}
+
+/* Container for horizontal images */
+.photo-detail-image.horizontal {
+  max-width: 35%; /* Image container takes up to 35% of the viewport width */
+  max-height: 50vh; /* Image container takes up to 50% of the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
+}
+
+/* Container for vertical images */
+.photo-detail-image.vertical {
+  max-width: 23%; /* Image container takes up to 23% of the viewport width */
+  max-height: 80vh; /* Image container takes up to 80% of the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a slight shadow */
+}
+
+.photo-detail-image img {
+  max-width: 100%; /* Image fits within the container */
+  max-height: 100%; /* Image stays within the container */
+  object-fit: contain; /* Scale image proportionally */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Container for the text and video */
+.photo-detail-text {
+  max-width: 50%; /* Adjusted to ensure the video fits well */
+  max-height: 80vh; /* Text container stays within 80% of the viewport height */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enables scrolling for long content */
+}
+
+.photo-detail-text h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.photo-detail-text p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Video container adjustment to ensure full visibility */
+.video-container {
+  margin-top: 20px;
+  width: 100%; /* Ensures the video container is as wide as the text area */
+}
+
+.video-container iframe {
+  width: 100%; /* Makes the video iframe responsive */
+  height: auto;
+  aspect-ratio: 16/9; /* Ensures the video keeps its aspect ratio */
+}

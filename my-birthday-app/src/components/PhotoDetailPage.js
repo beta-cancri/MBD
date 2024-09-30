@@ -37,6 +37,38 @@ const PhotoDetailPage = () => {
     }
   };
 
+  // Function to map photoKey to video link
+  const getVideoSrc = (photoKey) => {
+    switch (photoKey) {
+      case 'collagePhoto1':
+        return 'https://www.youtube.com/embed/tXllq4abt58';
+      case 'collagePhoto2':
+        return 'https://www.youtube.com/embed/-G_lyv5FyTY';
+      case 'collagePhoto3':
+        return 'https://www.youtube.com/embed/uMRGLYjrBxM';
+      case 'collagePhoto4':
+        return 'https://www.youtube.com/embed/gAodEmAAhLY';
+      case 'collagePhoto5':
+        return 'https://www.youtube.com/embed/ysgaPTKQQwU';
+      case 'collagePhoto6':
+        return 'https://www.youtube.com/embed/aN_TFFTCLH8';
+      case 'collagePhoto7':
+        return 'https://www.youtube.com/embed/sSLTsrQE5-4';
+      case 'collagePhoto8':
+        return 'https://www.youtube.com/embed/HslTkiJsqzI';
+      case 'collagePhoto9':
+        return 'https://www.youtube.com/embed/UHcbJz7Xv8M';
+      case 'collagePhoto10':
+        return 'https://www.youtube.com/embed/5fIMCIXnpGo';
+      case 'collagePhoto11':
+        return 'https://www.youtube.com/embed/rsg25uv4Og0';
+      case 'collagePhoto12':
+        return 'https://www.youtube.com/embed/oLkIa8edrF4';
+      default:
+        return 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Fallback video
+    }
+  };
+
   const handleImageLoad = (e) => {
     const image = e.target;
     const aspectRatio = image.naturalWidth / image.naturalHeight;
@@ -55,7 +87,7 @@ const PhotoDetailPage = () => {
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Placeholder video
+            src={getVideoSrc(id)} // Dynamic video based on photo ID
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
