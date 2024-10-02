@@ -21,7 +21,7 @@ const HomePage = () => {
     { key: 'collagePhoto1', top: 116, left: 620, width: '85px' },
     { key: 'collagePhoto2', top: 300, left: 210, width: '300px' },
     { key: 'collagePhoto3', top: 148, left: 1630, width: '165px' },
-    { key: 'collagePhoto4', top: 750, left: 250, width: '250px' },
+    { key: 'collagePhoto4', top: 750, left: 250, width: '225px' },
     { key: 'collagePhoto5', top: 560, left: 1200, width: '230px' },
     { key: 'collagePhoto6', top: 350, left: 500, width: '420px' },
     { key: 'collagePhoto7', top: 116, left: 470, width: '122px' },
@@ -68,11 +68,11 @@ const getPhotoSrc = (photoKey) => {
     case 'collagePhoto1':
       return 'https://i.imgur.com/2dJolYw.jpg';
     case 'collagePhoto2':
-      return 'https://i.imgur.com/MMjOFWJ.jpg';
+      return 'https://i.imgur.com/wNH1WRC.jpg';
     case 'collagePhoto3':
       return 'https://i.imgur.com/BubUxsR.jpg';
     case 'collagePhoto4':
-      return 'https://i.imgur.com/R6v02On.jpg';
+      return 'https://i.imgur.com/YYa7kvG.jpg';
     case 'collagePhoto5':
       return 'https://i.imgur.com/sbndgqM.jpg';
     case 'collagePhoto6':
