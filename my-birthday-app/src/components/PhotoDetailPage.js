@@ -15,7 +15,7 @@ const PhotoDetailPage = () => {
       case 'collagePhoto3':
         return 'https://i.imgur.com/BubUxsR.jpg';
       case 'collagePhoto4':
-        return 'https://i.imgur.com/R6v02On.jpg';
+        return 'https://i.imgur.com/YYa7kvG.jpg';
       case 'collagePhoto5':
         return 'https://i.imgur.com/sbndgqM.jpg';
       case 'collagePhoto6':
