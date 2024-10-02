@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
 const PhotoDetailPage = () => {
-  const { id } = useParams(); // Get the photo ID from the URL
+  const { id } = useParams(); 
   const [isHorizontal, setIsHorizontal] = useState(false);
 
   const getPhotoSrc = (photoKey) => {
@@ -69,6 +69,70 @@ const PhotoDetailPage = () => {
     }
   };
 
+  // Function to map photoKey to title
+  const getTitle = (photoKey) => {
+    switch (photoKey) {
+      case 'collagePhoto1':
+        return 'A Beautiful Moment';
+      case 'collagePhoto2':
+        return 'Memories of a Journey';
+      case 'collagePhoto3':
+        return 'Sunset Reflections';
+      case 'collagePhoto4':
+        return 'A Quiet Evening';
+      case 'collagePhoto5':
+        return 'Love and Laughter';
+      case 'collagePhoto6':
+        return 'A Day at the Park';
+      case 'collagePhoto7':
+        return 'Celebration of Life';
+      case 'collagePhoto8':
+        return 'The City at Night';
+      case 'collagePhoto9':
+        return 'Exploring Nature';
+      case 'collagePhoto10':
+        return 'Golden Hour';
+      case 'collagePhoto11':
+        return 'A New Adventure';
+      case 'collagePhoto12':
+        return 'Reflections on the Water';
+      default:
+        return 'Beautiful Memories';
+    }
+  };
+
+  // Function to map photoKey to description
+  const getDescription = (photoKey) => {
+    switch (photoKey) {
+      case 'collagePhoto1':
+        return 'This photo captures a beautiful and joyful moment in life.';
+      case 'collagePhoto2':
+        return 'A journey full of laughter and unforgettable memories.';
+      case 'collagePhoto3':
+        return 'A peaceful sunset with reflections on the water.';
+      case 'collagePhoto4':
+        return 'A serene and quiet evening with the ones you love.';
+      case 'collagePhoto5':
+        return 'Capturing the essence of love and laughter with friends and family.';
+      case 'collagePhoto6':
+        return 'A fun day spent in the park surrounded by nature.';
+      case 'collagePhoto7':
+        return 'Celebrating the most important moments in life with joy.';
+      case 'collagePhoto8':
+        return 'The city lights up at night as you reflect on the day.';
+      case 'collagePhoto9':
+        return 'Exploring the beauty of nature and feeling alive.';
+      case 'collagePhoto10':
+        return 'Golden hour captures the perfect moment in time.';
+      case 'collagePhoto11':
+        return 'A new adventure begins as you step into the unknown.';
+      case 'collagePhoto12':
+        return 'Calm reflections on the water, giving a sense of tranquility.';
+      default:
+        return 'An unforgettable moment captured in time.';
+    }
+  };
+
   const handleImageLoad = (e) => {
     const image = e.target;
     const aspectRatio = image.naturalWidth / image.naturalHeight;
@@ -78,16 +142,16 @@ const PhotoDetailPage = () => {
   return (
     <div className="photo-detail-container">
       <div className={`photo-detail-image ${isHorizontal ? 'horizontal' : 'vertical'}`}>
-        <img src={getPhotoSrc(id)} alt="Detailed view" onLoad={handleImageLoad} />
+        <img src={getPhotoSrc(id)} alt={getTitle(id)} onLoad={handleImageLoad} />
       </div>
       <div className="photo-detail-text">
-        <h1>Placeholder Text for {id}</h1>
-        <p>Here is some placeholder text for the selected photo.</p>
+        <h1>{getTitle(id)}</h1>
+        <p>{getDescription(id)}</p> 
         <div className="video-container">
           <iframe
             width="560"
             height="315"
-            src={getVideoSrc(id)} // Dynamic video based on photo ID
+            src={getVideoSrc(id)}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

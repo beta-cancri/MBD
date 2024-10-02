@@ -1,6 +1,11 @@
-/* General styling for both pages */
+@font-face {
+  font-family: 'Mister Grape';
+  src: url('./fonts/Mister Grape - Personal Use.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Mister Grape', sans-serif; /* Apply it globally or to specific elements */
 }
 
