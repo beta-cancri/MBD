@@ -47,7 +47,7 @@ const PhotoDetailPage = () => {
       case 'collagePhoto4':
         return 'https://www.youtube.com/embed/3kR1AJNUxgQ';
       case 'collagePhoto7':
-        return '';
+        return 'https://www.youtube.com/embed/QmcMb7Afx5Y';
       case 'collagePhoto11':
         return 'https://www.youtube.com/embed/UnqE1DcLkgU';
       default:
