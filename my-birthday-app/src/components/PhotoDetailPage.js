@@ -41,31 +41,31 @@ const PhotoDetailPage = () => {
   const getVideoSrc = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
-        return 'https://www.youtube.com/embed/tXllq4abt58';
+        return '';
       case 'collagePhoto2':
-        return 'https://www.youtube.com/embed/-G_lyv5FyTY';
+        return 'https://www.youtube.com/embed/kr3aWWc51Q8'; // video here 2
       case 'collagePhoto3':
-        return 'https://www.youtube.com/embed/uMRGLYjrBxM';
+        return '';
       case 'collagePhoto4':
-        return 'https://www.youtube.com/embed/gAodEmAAhLY';
+        return 'https://www.youtube.com/embed/3kR1AJNUxgQ'; // video here 4
       case 'collagePhoto5':
-        return 'https://www.youtube.com/embed/ysgaPTKQQwU';
+        return '';
       case 'collagePhoto6':
-        return 'https://www.youtube.com/embed/aN_TFFTCLH8';
+        return '';
       case 'collagePhoto7':
-        return 'https://www.youtube.com/embed/sSLTsrQE5-4';
+        return 'https://www.youtube.com/embed/sSLTsrQE5-4'; //video here 7
       case 'collagePhoto8':
-        return 'https://www.youtube.com/embed/HslTkiJsqzI';
+        return '';
       case 'collagePhoto9':
-        return 'https://www.youtube.com/embed/UHcbJz7Xv8M';
+        return '';
       case 'collagePhoto10':
-        return 'https://www.youtube.com/embed/5fIMCIXnpGo';
+        return '';
       case 'collagePhoto11':
-        return 'https://www.youtube.com/embed/rsg25uv4Og0';
+        return 'https://www.youtube.com/embed/UnqE1DcLkgU'; //video here 11
       case 'collagePhoto12':
-        return 'https://www.youtube.com/embed/oLkIa8edrF4';
+        return '';
       default:
-        return 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Fallback video
+        return ''; 
     }
   };
 
