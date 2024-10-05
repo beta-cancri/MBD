@@ -46,7 +46,7 @@
 }
 
 .photo-detail-text {
-  min-width: 700px;
+  width: 100%;
   max-width: 50%;
   max-height: 80vh;
   padding: 20px;
@@ -118,8 +118,9 @@
   background-color: rgb(182, 145, 166);
   padding: 20px;
   border-radius: 10px;
-  width: auto;
+  width: auto;  /* Adjust width to make it more flexible */
   height: auto;
+  max-height: 80%;  /* Limit the height to prevent overflow */
   overflow-y: auto;
   animation: fadeIn 0.3s forwards;
 }
@@ -188,6 +189,7 @@
   }
 }
 
+/* Adjusting for medium screen sizes */
 @media (max-width: 992px) {
   .photo-detail-container {
     flex-direction: column;
@@ -197,27 +199,12 @@
 
   .photo-detail-image.horizontal,
   .photo-detail-image.vertical {
-    max-width: 80%;
+    max-width: 60%;
     max-height: 40vh;
   }
 
   .photo-detail-text {
-    max-width: 90%;
-  }
-
-  .photo-detail-text h1 {
-    font-size: 1.8rem;
-  }
-
-  .photo-detail-text p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .photo-detail-image.horizontal,
-  .photo-detail-image.vertical {
-    max-width: 90%;
+    max-width: 80%;
   }
 
   .photo-detail-text h1 {
@@ -225,18 +212,24 @@
   }
 
   .photo-detail-text p {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+  }
+
+  .button-icon {
+    height: 80px; /* Reduce button size for smaller screens */
   }
 }
 
-@media (max-width: 576px) {
-  .photo-detail-text {
-    max-width: 95%;
-  }
-
+/* Adjusting for small screen sizes */
+@media (max-width: 768px) {
   .photo-detail-image.horizontal,
   .photo-detail-image.vertical {
-    max-width: 95%;
+    max-width: 90%;
+    max-height: 35vh;
+  }
+
+  .photo-detail-text {
+    max-width: 90%;
   }
 
   .photo-detail-text h1 {
@@ -244,6 +237,49 @@
   }
 
   .photo-detail-text p {
-    font-size: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .button-icon {
+    height: 70px; /* Reduce button size for small screens */
+  }
+
+  .popup-content ul {
+    grid-template-columns: repeat(3, 1fr); /* Adjust the grid for smaller screens */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 576px) {
+  .photo-detail-container {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .photo-detail-image.horizontal,
+  .photo-detail-image.vertical {
+    max-width: 100%;
+    max-height: 30vh;
+  }
+
+  .photo-detail-text {
+    max-width: 95%;
+  }
+
+  .photo-detail-text h1 {
+    font-size: 1.2rem;
+  }
+
+  .photo-detail-text p {
+    font-size: 0.9rem;
+  }
+
+  .button-icon {
+    height: 60px; /* Further reduce button size for extra small screens */
+  }
+
+  .popup-content ul {
+    grid-template-columns: repeat(2, 1fr); /* Further adjust the grid for extra small screens */
   }
 }
