@@ -93,13 +93,13 @@ const PhotoDetailPage = () => {
       case 'collagePhoto2':
         return 'Un recuerdo de una gran amiga que a pesar de la distancia aun seguimos en contacto.';
       case 'collagePhoto3':
-        return 'Una de las experiencias mas grandes que has tenido hasta la actualidad, pero no serán las ultimas.';
+        return 'Una de las experiencias mas grandes que has tenido hasta la actualidad, pero no serán las últimas.';
       case 'collagePhoto4':
         return 'Un recuerdo muy querido de uno de los amores de mi vida.';
       case 'collagePhoto5':
-        return '¡Fiesta de cumpleaños en chosica!.';
+        return 'Con la ayuda de tu hermana y varios familiares hicimos tu primera fiesta de cumpleaños y fue muy emocionante por tu primer año de vida. En la foto cuando se te menciono para la foto tu levantaste tu mano como diciendo ¡Yo misma soy!';
       case 'collagePhoto6':
-        return 'Primer paseo al parque de las leyendas, modelito desde pequeña.';
+        return 'Colada y haciendo lo imposible para poder ir contigo, logre ir a tu primer paseo al parque de las leyendas, modelito desde pequeña.';
       case 'collagePhoto7':
         return '¡Por último, recuerda que siempre que eres la persona más importante de mi vida, que usted es única y maravillosa!.';
       case 'collagePhoto8':
