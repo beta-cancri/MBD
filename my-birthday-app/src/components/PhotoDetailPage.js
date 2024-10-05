@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
 const PhotoDetailPage = () => {
   const { id } = useParams(); 
+  const navigate = useNavigate(); 
   const [isHorizontal, setIsHorizontal] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); 
 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
@@ -37,39 +39,21 @@ const PhotoDetailPage = () => {
     }
   };
 
-  // Function to map photoKey to video link
   const getVideoSrc = (photoKey) => {
     switch (photoKey) {
-      case 'collagePhoto1':
-        return '';
       case 'collagePhoto2':
-        return 'https://www.youtube.com/embed/kr3aWWc51Q8'; // video here 2
-      case 'collagePhoto3':
-        return '';
+        return 'https://www.youtube.com/embed/kr3aWWc51Q8';
       case 'collagePhoto4':
-        return 'https://www.youtube.com/embed/3kR1AJNUxgQ'; // video here 4
-      case 'collagePhoto5':
-        return '';
-      case 'collagePhoto6':
-        return '';
+        return 'https://www.youtube.com/embed/3kR1AJNUxgQ';
       case 'collagePhoto7':
-        return 'https://www.youtube.com/embed/sSLTsrQE5-4'; //video here 7
-      case 'collagePhoto8':
-        return '';
-      case 'collagePhoto9':
-        return '';
-      case 'collagePhoto10':
-        return '';
+        return 'https://www.youtube.com/embed/sSLTsrQE5-4';
       case 'collagePhoto11':
-        return 'https://www.youtube.com/embed/UnqE1DcLkgU'; //video here 11
-      case 'collagePhoto12':
-        return '';
+        return 'https://www.youtube.com/embed/UnqE1DcLkgU';
       default:
         return ''; 
     }
   };
 
-  // Function to map photoKey to title
   const getTitle = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
@@ -101,7 +85,6 @@ const PhotoDetailPage = () => {
     }
   };
 
-  // Function to map photoKey to description
   const getDescription = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
@@ -136,8 +119,31 @@ const PhotoDetailPage = () => {
   const handleImageLoad = (e) => {
     const image = e.target;
     const aspectRatio = image.naturalWidth / image.naturalHeight;
-    setIsHorizontal(aspectRatio > 1); // Set if image is horizontal based on aspect ratio
+    setIsHorizontal(aspectRatio > 1); 
   };
+
+  // Handle button to toggle popup
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  // Handle navigation to home
+  const goHome = () => {
+    navigate('/home');
+  };
+
+  // Handle navigation to a specific photo
+  const navigateToPhoto = (photoKey) => {
+    navigate(`/photo/${photoKey}`);
+    setShowPopup(false); // Close popup when navigating
+  };
+
+  // List of photos for the popup
+  const photoList = [
+    'collagePhoto1', 'collagePhoto2', 'collagePhoto3', 'collagePhoto4', 'collagePhoto5',
+    'collagePhoto6', 'collagePhoto7', 'collagePhoto8', 'collagePhoto9', 'collagePhoto10',
+    'collagePhoto11', 'collagePhoto12'
+  ];
 
   return (
     <div className="photo-detail-container">
@@ -147,18 +153,42 @@ const PhotoDetailPage = () => {
       <div className="photo-detail-text">
         <h1>{getTitle(id)}</h1>
         <p>{getDescription(id)}</p> 
-        <div className="video-container">
-          <iframe
-            width="560"
-            height="315"
-            src={getVideoSrc(id)}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        {getVideoSrc(id) && (
+          <div className="video-container">
+            <iframe
+              width="560"
+              height="315"
+              src={getVideoSrc(id)}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+        <div className="button-container">
+          <button className="go-home" onClick={goHome}>Go Back to Home</button>
+          <button className="open-popup" onClick={togglePopup}>View All Photos</button>
         </div>
       </div>
+
+      {/* Popup for listing all photos */}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <button className="close-popup" onClick={togglePopup}>Close</button>
+            <ul>
+              {photoList.map((photo, index) => (
+                <li key={index}>
+                  <button onClick={() => navigateToPhoto(photo)}>
+                    <img src={getPhotoSrc(photo)} alt={`Thumbnail for ${photo}`} className="thumbnail" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

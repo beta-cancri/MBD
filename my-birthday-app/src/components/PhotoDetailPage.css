@@ -1,7 +1,7 @@
 .photo-detail-container {
   display: flex;
-  justify-content: center; /* Horizontally centers the items */
-  align-items: center; /* Vertically centers the items */
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
   background-image: url('https://i.imgur.com/YqcI09T.png');
@@ -11,7 +11,7 @@
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
-  gap: 20px; /* Adjust gap between the image and text */
+  gap: 20px;
 }
 
 .photo-detail-image.horizontal {
@@ -57,7 +57,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   overflow-y: auto;
-  margin-left: 10px; /* Adjust margin between the image and text area */
+  margin-left: 10px;
 }
 
 .photo-detail-text h1 {
@@ -83,12 +83,88 @@
   aspect-ratio: 16/9;
 }
 
-/* Responsive Adjustments */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.go-home, .open-popup {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.go-home:hover, .open-popup:hover {
+  background-color: #495057;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.popup-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.popup-content ul li {
+  margin: 10px 0;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.popup-content .thumbnail {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.close-popup {
+  background-color: red;
+  margin-bottom: 20px;
+}
+
+.close-popup:hover {
+  background-color: darkred;
+}
+
 @media (max-width: 992px) {
   .photo-detail-container {
     flex-direction: column;
     gap: 15px;
-    justify-content: center; /* Ensure content stays centered */
+    justify-content: center;
   }
 
   .photo-detail-image.horizontal,
@@ -101,7 +177,6 @@
     max-width: 90%;
   }
 
-  /* Adjust font sizes for medium screens */
   .photo-detail-text h1 {
     font-size: 1.8rem;
   }
@@ -117,7 +192,6 @@
     max-width: 90%;
   }
 
-  /* Adjust font sizes for small screens */
   .photo-detail-text h1 {
     font-size: 1.6rem;
   }
@@ -137,7 +211,6 @@
     max-width: 95%;
   }
 
-  /* Adjust font sizes for very small screens */
   .photo-detail-text h1 {
     font-size: 1.4rem;
   }
