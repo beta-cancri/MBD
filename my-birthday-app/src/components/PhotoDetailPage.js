@@ -7,7 +7,7 @@ const PhotoDetailPage = () => {
   const navigate = useNavigate(); 
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [showPopup, setShowPopup] = useState(false); 
-  const popupRef = useRef(null); // Ref for detecting outside clicks
+  const popupRef = useRef(null); 
 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
@@ -132,15 +132,18 @@ const PhotoDetailPage = () => {
   };
 
   const navigateToPhoto = (photoKey) => {
-    setShowPopup(false); 
-    setTimeout(() => navigate(`/photo/${photoKey}`), 300); 
+    document.querySelector(".popup-content").classList.add("animate-popup-out"); // Trigger fade-out
+    setTimeout(() => {
+      setShowPopup(false);
+      navigate(`/photo/${photoKey}`);
+    }, 300); // Wait for the animation to complete
   };
 
-  // Handle click outside of the popup
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
-        setShowPopup(false);
+        document.querySelector(".popup-content").classList.add("animate-popup-out");
+        setTimeout(() => setShowPopup(false), 300); // Fade-out before closing
       }
     };
     if (showPopup) {

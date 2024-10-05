@@ -137,7 +137,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.3s forwards; /* Fade-in animation */
+  animation: fadeIn 0.3s forwards; 
 }
 
 .popup-content {
@@ -147,12 +147,16 @@
   width: auto;
   height: auto;
   overflow-y: auto;
-  animation: fadeIn 0.3s forwards; /* Fade-in animation */
+  animation: fadeIn 0.3s forwards;
+}
+
+.popup-content.animate-popup-out {
+  animation: fadeOut 0.3s forwards;
 }
 
 .popup-content ul {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4-column grid */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 10px;
   list-style: none;
   padding: 0;
@@ -174,7 +178,7 @@
 }
 
 .popup-content .thumbnail {
-  width: 100px; /* Thumbnails will fit in each grid cell */
+  width: 100px; 
   height: auto;
   border-radius: 5px;
 }
