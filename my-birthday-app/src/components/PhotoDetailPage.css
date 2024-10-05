@@ -85,46 +85,20 @@
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 20px;
+  gap: 10px;
 }
 
-.go-home, .open-popup {
-  padding: 10px 20px;
-  font-size: 1rem;
+.button-icon {
+  width: auto;
+  height: 100px;
   cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #6c757d;
-  color: white;
-  transition: background-color 0.3s;
+  transition: transform 0.3s ease;
 }
 
-.go-home:hover, .open-popup:hover {
-  background-color: #495057;
-}
-
-/* Popup Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95);
-  }
+.button-icon:hover {
+  transform: scale(1.1);
 }
 
 .popup {
@@ -137,7 +111,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.3s forwards; 
+  animation: fadeIn 0.3s forwards;
 }
 
 .popup-content {
@@ -167,7 +141,7 @@
 }
 
 .popup-content button {
-  padding: 10px 20px;
+  padding: 7px 7px;
   margin-bottom: 10px;
   font-size: 1rem;
   cursor: pointer;
@@ -184,12 +158,34 @@
 }
 
 .close-popup {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0);
   margin-bottom: 20px;
 }
 
 .close-popup:hover {
-  background-color: darkred;
+  background-color: rgba(139, 0, 0, 0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 
 @media (max-width: 992px) {

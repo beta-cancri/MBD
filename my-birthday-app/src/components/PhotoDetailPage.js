@@ -184,15 +184,30 @@ const PhotoDetailPage = () => {
           </div>
         )}
         <div className="button-container">
-          <button className="go-home" onClick={goHome}>Go Back to Home</button>
-          <button className="open-popup" onClick={togglePopup}>View All Photos</button>
+          <img
+            src="https://i.imgur.com/pRhHFEN.png"
+            alt="View Gallery"
+            className="button-icon open-gallery"
+            onClick={togglePopup}
+          />
+          <img
+            src="https://i.imgur.com/x0irdQ3.png"
+            alt="Go Back"
+            className="button-icon go-back"
+            onClick={goHome}
+          />
         </div>
       </div>
 
       {showPopup && (
         <div className="popup">
           <div className="popup-content animate-popup" ref={popupRef}>
-            <button className="close-popup" onClick={togglePopup}>Close</button>
+            <img
+              src="https://i.imgur.com/x0irdQ3.png"
+              alt="Close"
+              className="close-popup button-icon"
+              onClick={togglePopup}
+            />
             <ul>
               {photoList.map((photo, index) => (
                 <li key={index}>
