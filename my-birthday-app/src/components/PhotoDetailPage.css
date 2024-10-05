@@ -141,7 +141,7 @@
 }
 
 .popup-content {
-  background-color: white;
+  background-color: rgb(182, 145, 166);
   padding: 20px;
   border-radius: 10px;
   width: auto;
@@ -173,7 +173,7 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #6c757d;
+  background-color: #ffffff;
   color: white;
 }
 
