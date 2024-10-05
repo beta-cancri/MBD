@@ -122,23 +122,19 @@ const PhotoDetailPage = () => {
     setIsHorizontal(aspectRatio > 1); 
   };
 
-  // Handle button to toggle popup
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  // Handle navigation to home
   const goHome = () => {
     navigate('/home');
   };
 
-  // Handle navigation to a specific photo
   const navigateToPhoto = (photoKey) => {
     navigate(`/photo/${photoKey}`);
-    setShowPopup(false); // Close popup when navigating
+    setShowPopup(false); 
   };
 
-  // List of photos for the popup
   const photoList = [
     'collagePhoto1', 'collagePhoto2', 'collagePhoto3', 'collagePhoto4', 'collagePhoto5',
     'collagePhoto6', 'collagePhoto7', 'collagePhoto8', 'collagePhoto9', 'collagePhoto10',
@@ -172,7 +168,6 @@ const PhotoDetailPage = () => {
         </div>
       </div>
 
-      {/* Popup for listing all photos */}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
