@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
@@ -7,6 +7,7 @@ const PhotoDetailPage = () => {
   const navigate = useNavigate(); 
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [showPopup, setShowPopup] = useState(false); 
+  const popupRef = useRef(null); // Ref for detecting outside clicks
 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
@@ -123,7 +124,7 @@ const PhotoDetailPage = () => {
   };
 
   const togglePopup = () => {
-    setShowPopup(!showPopup);
+    setShowPopup((prev) => !prev);
   };
 
   const goHome = () => {
@@ -131,9 +132,26 @@ const PhotoDetailPage = () => {
   };
 
   const navigateToPhoto = (photoKey) => {
-    navigate(`/photo/${photoKey}`);
     setShowPopup(false); 
+    setTimeout(() => navigate(`/photo/${photoKey}`), 300); 
   };
+
+  // Handle click outside of the popup
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setShowPopup(false);
+      }
+    };
+    if (showPopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showPopup]);
 
   const photoList = [
     'collagePhoto1', 'collagePhoto2', 'collagePhoto3', 'collagePhoto4', 'collagePhoto5',
@@ -170,7 +188,7 @@ const PhotoDetailPage = () => {
 
       {showPopup && (
         <div className="popup">
-          <div className="popup-content">
+          <div className="popup-content animate-popup" ref={popupRef}>
             <button className="close-popup" onClick={togglePopup}>Close</button>
             <ul>
               {photoList.map((photo, index) => (

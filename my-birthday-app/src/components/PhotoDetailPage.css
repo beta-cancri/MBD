@@ -104,6 +104,29 @@
   background-color: #495057;
 }
 
+/* Popup Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -114,6 +137,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.3s forwards; /* Fade-in animation */
 }
 
 .popup-content {
@@ -123,6 +147,7 @@
   width: auto;
   height: auto;
   overflow-y: auto;
+  animation: fadeIn 0.3s forwards; /* Fade-in animation */
 }
 
 .popup-content ul {
