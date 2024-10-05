@@ -47,7 +47,7 @@ const PhotoDetailPage = () => {
       case 'collagePhoto4':
         return 'https://www.youtube.com/embed/3kR1AJNUxgQ';
       case 'collagePhoto7':
-        return 'https://www.youtube.com/embed/sSLTsrQE5-4';
+        return '';
       case 'collagePhoto11':
         return 'https://www.youtube.com/embed/UnqE1DcLkgU';
       default:
@@ -58,29 +58,29 @@ const PhotoDetailPage = () => {
   const getTitle = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
-        return 'A Beautiful Moment';
+        return 'Primeros año';
       case 'collagePhoto2':
-        return 'Memories of a Journey';
+        return 'Memorias de un viaje';
       case 'collagePhoto3':
-        return 'Sunset Reflections';
+        return '¡Una nueva aventura!';
       case 'collagePhoto4':
-        return 'A Quiet Evening';
+        return 'Mi mammá Mishelle';
       case 'collagePhoto5':
-        return 'Love and Laughter';
+        return 'Primer año de vida';
       case 'collagePhoto6':
-        return 'A Day at the Park';
+        return 'Mi pequeña';
       case 'collagePhoto7':
-        return 'Celebration of Life';
+        return 'Ultimo recuerdo del cual tengo mucha añoranza';
       case 'collagePhoto8':
-        return 'The City at Night';
+        return 'Paseo enboladas';
       case 'collagePhoto9':
-        return 'Exploring Nature';
+        return '¡La tía Gato es la mejor!';
       case 'collagePhoto10':
-        return 'Golden Hour';
+        return 'Viaje a Cuzco';
       case 'collagePhoto11':
-        return 'A New Adventure';
+        return 'De compras con la Omoni';
       case 'collagePhoto12':
-        return 'Reflections on the Water';
+        return 'Fotos inesperadas';
       default:
         return 'Beautiful Memories';
     }
@@ -89,29 +89,29 @@ const PhotoDetailPage = () => {
   const getDescription = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
-        return 'This photo captures a beautiful and joyful moment in life.';
+        return 'Recordando en el momento en que todo comenzo, me llena de felicidad haberte encontrado.';
       case 'collagePhoto2':
-        return 'A journey full of laughter and unforgettable memories.';
+        return 'Un recuerdo de una gran amiga que a pesar de la distancia aun seguimos en contacto.';
       case 'collagePhoto3':
-        return 'A peaceful sunset with reflections on the water.';
+        return 'Una de las experiencias mas grandes que has tenido hasta la actualidad, pero no serán las ultimas.';
       case 'collagePhoto4':
-        return 'A serene and quiet evening with the ones you love.';
+        return 'Un recuerdo muy querido de uno de los amores de mi vida.';
       case 'collagePhoto5':
-        return 'Capturing the essence of love and laughter with friends and family.';
+        return '¡Fiesta de cumpleaños en chosica!.';
       case 'collagePhoto6':
-        return 'A fun day spent in the park surrounded by nature.';
+        return 'Primer paseo al parque de las leyendas, modelito desde pequeña.';
       case 'collagePhoto7':
-        return 'Celebrating the most important moments in life with joy.';
+        return '¡Por último, recuerda que siempre que eres la persona más importante de mi vida, que usted es única y maravillosa!.';
       case 'collagePhoto8':
-        return 'The city lights up at night as you reflect on the day.';
+        return 'Un paseo en una de las actividades de Renzo, muy divertido pasarlo en familia.';
       case 'collagePhoto9':
-        return 'Exploring the beauty of nature and feeling alive.';
+        return 'Recuerdo de Renzo con la tía Gato en su pequeño pero hermoso trayecto de vida.';
       case 'collagePhoto10':
-        return 'Golden hour captures the perfect moment in time.';
+        return 'Un bello recuerdo de un viaje inolvidable que la pasamos contigo despues de tanto tiempo sin verte.';
       case 'collagePhoto11':
-        return 'A new adventure begins as you step into the unknown.';
+        return 'Haciendo compras y gastando la quincena.';
       case 'collagePhoto12':
-        return 'Calm reflections on the water, giving a sense of tranquility.';
+        return 'Esos momentos en los cuales a pesar de todo nos mantuvimos juntos.';
       default:
         return 'An unforgettable moment captured in time.';
     }
