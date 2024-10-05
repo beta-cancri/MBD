@@ -18,18 +18,18 @@ const HomePage = () => {
   };
 
   const positions = [
-    { key: 'collagePhoto1', top: 116, left: 620, width: '85px' },
-    { key: 'collagePhoto2', top: 300, left: 210, width: '300px' },
-    { key: 'collagePhoto3', top: 148, left: 1630, width: '165px' },
-    { key: 'collagePhoto4', top: 750, left: 250, width: '225px' },
-    { key: 'collagePhoto5', top: 560, left: 1200, width: '230px' },
-    { key: 'collagePhoto6', top: 350, left: 500, width: '420px' },
-    { key: 'collagePhoto7', top: 116, left: 470, width: '122px' },
-    { key: 'collagePhoto8', top: 680, left: 800, width: '420px' },
-    { key: 'collagePhoto9', top: 610, left: 450, width: '350px' },
-    { key: 'collagePhoto10', top: 340, left: 850, width: '210px' },
-    { key: 'collagePhoto11', top: 110, left: 1254, width: '385px' },
-    { key: 'collagePhoto12', top: 350, left: 1436, width: '300px' },
+    { key: 'collagePhoto1', top: '12%', left: '33.2%', width: '3.5%' },
+    { key: 'collagePhoto2', top: '30%', left: '15%', width: '15%' },
+    { key: 'collagePhoto3', top: '5%', left: '86%', width: '12%' },
+    { key: 'collagePhoto4', top: '60%', left: '5%', width: '20%' },
+    { key: 'collagePhoto5', top: '58.2%', left: '63%', width: '13%' },
+    { key: 'collagePhoto6', top: '32%', left: '30%', width: '20%' },
+    { key: 'collagePhoto7', top: '12%', left: '25.3%', width: '6.5%' },
+    { key: 'collagePhoto8', top: '70%', left: '40%', width: '25%' },
+    { key: 'collagePhoto9', top: '65%', left: '25%', width: '22%' },
+    { key: 'collagePhoto10', top: '28.2%', left: '44.2%', width: '12%' },
+    { key: 'collagePhoto11', top: '10%', left: '67.2%', width: '20%' },
+    { key: 'collagePhoto12', top: '39%', left: '77.2%', width: '18%' },
   ];
 
   return (
@@ -45,9 +45,10 @@ const HomePage = () => {
           key={index}
           className={`collage-container collage-${index + 1} ${isLoaded ? 'in-place' : 'off-screen'}`}
           style={{
-            top: `${position.top}px`,
-            left: `${position.left}px`,
+            top: position.top,
+            left: position.left,
             width: position.width,
+            position: 'absolute'  // Ensure this stays positioned properly
           }}
           onClick={() => handleClick(position.key)}
         >
