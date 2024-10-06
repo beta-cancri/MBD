@@ -17,9 +17,14 @@ const BackgroundMusic = ({ isYouTubePlaying, isMusicPlaying, setIsMusicPlaying }
 
   // Handle YouTube playing state
   useEffect(() => {
+    console.log("YouTube playing state:", isYouTubePlaying);
+    console.log("Music playing state:", isMusicPlaying);
+    console.log("Audio loaded state:", audioLoaded);
+
     if (audioRef.current) {
       if (isYouTubePlaying) {
         audioRef.current.pause();
+        setIsMusicPlaying(false);  // Update music playing state here
         console.log("YouTube video playing - music paused.");
       } else if (isMusicPlaying && audioLoaded) {
         audioRef.current.play().catch((error) => {
@@ -27,7 +32,7 @@ const BackgroundMusic = ({ isYouTubePlaying, isMusicPlaying, setIsMusicPlaying }
         });
       }
     }
-  }, [isYouTubePlaying, isMusicPlaying, audioLoaded]);
+  }, [isYouTubePlaying, isMusicPlaying, audioLoaded, setIsMusicPlaying]);  // Added setIsMusicPlaying to the dependency array
 
   // Button click handler to toggle music
   const toggleMusic = () => {

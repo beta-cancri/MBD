@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PhotoDetailPage.css';
 
-const PhotoDetailPage = ({ onVideoPlay, onVideoPause }) => {
+const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isHorizontal, setIsHorizontal] = useState(false);
@@ -42,18 +42,14 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause }) => {
   };
 
   const getVideoSrc = (photoKey) => {
-    switch (photoKey) {
-      case 'collagePhoto2':
-        return 'https://www.youtube.com/embed/kr3aWWc51Q8?enablejsapi=1';
-      case 'collagePhoto4':
-        return 'https://www.youtube.com/embed/3kR1AJNUxgQ?enablejsapi=1';
-      case 'collagePhoto7':
-        return 'https://www.youtube.com/embed/QmcMb7Afx5Y?enablejsapi=1';
-      case 'collagePhoto11':
-        return 'https://www.youtube.com/embed/UnqE1DcLkgU?enablejsapi=1';
-      default:
-        return '';
-    }
+    const base = 'https://www.youtube.com/embed/';
+    const videoIds = {
+      collagePhoto2: 'kr3aWWc51Q8',
+      collagePhoto4: '3kR1AJNUxgQ',
+      collagePhoto7: 'QmcMb7Afx5Y',
+      collagePhoto11: 'UnqE1DcLkgU'
+    };
+    return `${base}${videoIds[photoKey]}?enablejsapi=1&origin=${window.location.origin}`;
   };
 
   const getTitle = (photoKey) => {
@@ -162,27 +158,31 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause }) => {
   }, [showPopup]);
 
   useEffect(() => {
+    console.log('YouTube event handling initialized');
     const handleYouTubeEvent = (event) => {
-      console.log('YouTube event received:', event);
-      const videoUrl = getVideoSrc(id);
-      if (event.origin === 'https://www.youtube.com' && iframeRef.current) {
+      const iframe = iframeRef.current;
+      if (iframe && event.origin === 'https://www.youtube.com') {
         const data = JSON.parse(event.data);
-        if (data?.event === 'infoDelivery' && videoUrl.includes(data.id)) {
-          if (data.info.playerState === 1) {
+        if (data?.event === 'infoDelivery') {
+          const playerState = data.info?.playerState;
+          if (playerState === 1) {
             console.log('YouTube video is playing');
+            setIsYouTubePlaying(true);  // Update YouTube playing state
             onVideoPlay();
-          } else if (data.info.playerState === 2) {
+          } else if (playerState === 2) {
             console.log('YouTube video is paused');
+            setIsYouTubePlaying(false);  // Update YouTube playing state
             onVideoPause();
           }
         }
       }
     };
+
     window.addEventListener('message', handleYouTubeEvent);
     return () => {
       window.removeEventListener('message', handleYouTubeEvent);
     };
-  }, [id, onVideoPlay, onVideoPause]);
+  }, [id, setIsYouTubePlaying, onVideoPlay, onVideoPause]);
 
   const photoList = [
     'collagePhoto1',

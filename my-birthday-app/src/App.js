@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import LandingPage from './components/LandingPage';
@@ -28,14 +28,18 @@ function App() {
   const [isYouTubePlaying, setIsYouTubePlaying] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
+  // Wrapping setIsMusicPlaying with useCallback to prevent unnecessary re-renders
+  const handleSetIsMusicPlaying = useCallback((value) => {
+    setIsMusicPlaying(value);
+  }, []);
+
   return (
     <Router>
       {/* Background music component */}
       <BackgroundMusic
-        audioSrc="https://shchsac-my.sharepoint.com/:u:/g/personal/diegochinchay_shchsac_onmicrosoft_com/EQnp7d_CGvpJqUX_jO5hoisB5lL4v_TuXCEVGRN7tuUwvw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=uX3JwJ"
         isYouTubePlaying={isYouTubePlaying}
         isMusicPlaying={isMusicPlaying}
-        setIsMusicPlaying={setIsMusicPlaying}
+        setIsMusicPlaying={handleSetIsMusicPlaying} // Use the memoized function
       />
 
       {/* Routes */}
