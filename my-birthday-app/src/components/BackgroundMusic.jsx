@@ -1,39 +1,64 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from 'react';
+import alldaylongAudio from '../audio/Alldaylong - Dreamcatcher.mp3'; // Adjust the path if the audio file is in a different folder
 
-const BackgroundMusic = ({ audioSrc }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+const BackgroundMusic = ({ isYouTubePlaying, isMusicPlaying, setIsMusicPlaying }) => {
   const audioRef = useRef(null);
-  const location = useLocation();
-  const [isYouTubePlaying, setIsYouTubePlaying] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
 
-  // Play/Pause the audio based on route or YouTube play state
+  // Monitor when the audio can start playing
   useEffect(() => {
-    if (isYouTubePlaying) {
-      audioRef.current.pause();
-    } else if (isPlaying) {
-      audioRef.current.play();
+    if (audioRef.current) {
+      audioRef.current.addEventListener('canplay', () => {
+        setAudioLoaded(true);
+        console.log("Audio canplay event triggered - audio loaded.");
+      });
     }
-  }, [location.pathname, isPlaying, isYouTubePlaying]);
+  }, []);
 
-  // Toggle play/pause for background music
-  const togglePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+  // Handle YouTube playing state
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isYouTubePlaying) {
+        audioRef.current.pause();
+        console.log("YouTube video playing - music paused.");
+      } else if (isMusicPlaying && audioLoaded) {
+        audioRef.current.play().catch((error) => {
+          console.error('Playback error during autoplay:', error);
+        });
+      }
     }
-    setIsPlaying(!isPlaying);
+  }, [isYouTubePlaying, isMusicPlaying, audioLoaded]);
+
+  // Button click handler to toggle music
+  const toggleMusic = () => {
+    console.log("Music toggle button clicked.");
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+        setIsMusicPlaying(false);
+        console.log("Music paused.");
+      } else {
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsMusicPlaying(true);
+            console.log("Music playing.");
+          })
+          .catch((error) => {
+            console.error('Playback error during button click:', error);
+          });
+      }
+    }
   };
 
   return (
     <div>
-      {/* Hidden audio element */}
-      <audio ref={audioRef} src={audioSrc} loop autoPlay />
-
-      {/* Toggle play/pause button */}
-      <button onClick={togglePlayPause}>
-        {isPlaying ? 'Pause Music' : 'Play Music'}
+      <audio ref={audioRef} loop>
+        <source src={alldaylongAudio} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <button onClick={toggleMusic}>
+        {isMusicPlaying ? 'Pause Music' : 'Play Music'}
       </button>
     </div>
   );
