@@ -4,7 +4,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import giftBoxAnimation from '../animations/gift-box-animation.json';
 import './LandingPage.css';
 
-const LandingPage = () => {
+const LandingPage = ({ onMusicStart }) => { // Added the onMusicStart prop
   const [isVisible, setIsVisible] = useState(false); // For scaling animation
   const [isPaused, setIsPaused] = useState(false); // For pausing the animation
   const [isClicked, setIsClicked] = useState(false); // For click/open animation
@@ -30,6 +30,7 @@ const LandingPage = () => {
     setIsPaused(false); // Hide the "Click Me!" image
     setIsClicked(true); // Trigger opening animation
     playerRef.current.play(); // Resume the animation
+    onMusicStart(); // Start the music when the box is clicked
   };
 
   const handleAnimationComplete = () => {

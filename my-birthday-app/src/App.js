@@ -7,13 +7,13 @@ import PhotoDetailPage from './components/PhotoDetailPage';
 import BackgroundMusic from './components/BackgroundMusic';
 import './App.css';
 
-function AnimatedRoutes({ setIsYouTubePlaying }) {
+function AnimatedRoutes({ setIsYouTubePlaying, handleMusicStart }) {
   const location = useLocation();
 
   return (
     <AnimatePresence wait>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage onMusicStart={handleMusicStart} />} /> {/* Pass handleMusicStart to LandingPage */}
         <Route path="/home" element={<HomePage />} />
         <Route
           path="/photo/:id"
@@ -33,6 +33,11 @@ function App() {
     setIsMusicPlaying(value);
   }, []);
 
+  // Function to handle music start from the LandingPage
+  const handleMusicStart = () => {
+    setIsMusicPlaying(true);
+  };
+
   return (
     <Router>
       {/* Background music component */}
@@ -43,7 +48,7 @@ function App() {
       />
 
       {/* Routes */}
-      <AnimatedRoutes setIsYouTubePlaying={setIsYouTubePlaying} />
+      <AnimatedRoutes setIsYouTubePlaying={setIsYouTubePlaying} handleMusicStart={handleMusicStart} />
     </Router>
   );
 }
