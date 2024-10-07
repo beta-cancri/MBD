@@ -13,29 +13,29 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
   const getPhotoSrc = (photoKey) => {
     switch (photoKey) {
       case 'collagePhoto1':
-        return 'https://i.imgur.com/2dJolYw.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO1;
       case 'collagePhoto2':
-        return 'https://i.imgur.com/wNH1WRC.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO2;
       case 'collagePhoto3':
-        return 'https://i.imgur.com/BubUxsR.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO3;
       case 'collagePhoto4':
-        return 'https://i.imgur.com/YYa7kvG.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO4;
       case 'collagePhoto5':
-        return 'https://i.imgur.com/sbndgqM.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO5;
       case 'collagePhoto6':
-        return 'https://i.imgur.com/aKr1ASB.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO6;
       case 'collagePhoto7':
-        return 'https://i.imgur.com/7q0Xthx.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO7;
       case 'collagePhoto8':
-        return 'https://i.imgur.com/QUM4g1J.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO8;
       case 'collagePhoto9':
-        return 'https://i.imgur.com/FXIej3p.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO9;
       case 'collagePhoto10':
-        return 'https://i.imgur.com/T0PPdWx.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO10;
       case 'collagePhoto11':
-        return 'https://i.imgur.com/S048lb3.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO11;
       case 'collagePhoto12':
-        return 'https://i.imgur.com/DdY8tjW.jpg';
+        return process.env.REACT_APP_PHOTO_URL_COLLAGE_PHOTO12;
       default:
         return '';
     }
@@ -44,10 +44,10 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
   const getVideoSrc = (photoKey) => {
     const base = 'https://www.youtube.com/embed/';
     const videoIds = {
-      collagePhoto2: 'kr3aWWc51Q8',
-      collagePhoto4: '3kR1AJNUxgQ',
-      collagePhoto7: 'QmcMb7Afx5Y',
-      collagePhoto11: 'UnqE1DcLkgU'
+      collagePhoto2: process.env.REACT_APP_VIDEO_ID_COLLAGE_PHOTO2,
+      collagePhoto4: process.env.REACT_APP_VIDEO_ID_COLLAGE_PHOTO4,
+      collagePhoto7: process.env.REACT_APP_VIDEO_ID_COLLAGE_PHOTO7,
+      collagePhoto11: process.env.REACT_APP_VIDEO_ID_COLLAGE_PHOTO11,
     };
 
     // Return the full URL only if the photoKey has a valid video ID
