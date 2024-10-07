@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Player } from '@lottiefiles/react-lottie-player';
-import giftBoxAnimation from '../animations/gift-box-animation.json';
+import giftBoxAnimation from '../../animations/gift-box-animation.json';
 import './LandingPage.css';
 
 const LandingPage = ({ onMusicStart }) => { // Added the onMusicStart prop

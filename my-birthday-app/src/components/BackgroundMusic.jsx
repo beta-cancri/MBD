@@ -16,7 +16,6 @@ const BackgroundMusic = ({ isYouTubePlaying, isMusicPlaying, setIsMusicPlaying }
       audioRef.current.volume = volume; // Ensure the volume is set to the initial state
       audioRef.current.addEventListener('canplay', () => {
         setAudioLoaded(true);
-        console.log("Audio canplay event triggered - audio loaded.");
       });
     }
   }, [volume]);

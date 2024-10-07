@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import LandingPage from './components/LandingPage';
-import HomePage from './components/HomePage';
-import PhotoDetailPage from './components/PhotoDetailPage';
+import LandingPage from './views/LandingPage/LandingPage';
+import HomePage from './views/HomePage/HomePage';
+import PhotoDetailPage from './views/PhotoDetailPage/PhotoDetailPage';
 import BackgroundMusic from './components/BackgroundMusic';
+import PasswordPrompt from './components/PasswordPrompt'; // Import the PasswordPrompt component
 import './App.css';
 
 function AnimatedRoutes({ setIsYouTubePlaying, handleMusicStart }) {
@@ -27,6 +28,7 @@ function AnimatedRoutes({ setIsYouTubePlaying, handleMusicStart }) {
 function App() {
   const [isYouTubePlaying, setIsYouTubePlaying] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [accessGranted, setAccessGranted] = useState(false); // State to check if the user has entered the correct password
 
   // Wrapping setIsMusicPlaying with useCallback to prevent unnecessary re-renders
   const handleSetIsMusicPlaying = useCallback((value) => {
@@ -38,17 +40,29 @@ function App() {
     setIsMusicPlaying(true);
   };
 
+  // Function to handle password verification success
+  const handleAccessGranted = () => {
+    setAccessGranted(true);
+  };
+
   return (
     <Router>
-      {/* Background music component */}
-      <BackgroundMusic
-        isYouTubePlaying={isYouTubePlaying}
-        isMusicPlaying={isMusicPlaying}
-        setIsMusicPlaying={handleSetIsMusicPlaying} // Use the memoized function
-      />
+      {/* Display PasswordPrompt until access is granted */}
+      {!accessGranted ? (
+        <PasswordPrompt onAccessGranted={handleAccessGranted} />
+      ) : (
+        <>
+          {/* Background music component */}
+          <BackgroundMusic
+            isYouTubePlaying={isYouTubePlaying}
+            isMusicPlaying={isMusicPlaying}
+            setIsMusicPlaying={handleSetIsMusicPlaying} // Use the memoized function
+          />
 
-      {/* Routes */}
-      <AnimatedRoutes setIsYouTubePlaying={setIsYouTubePlaying} handleMusicStart={handleMusicStart} />
+          {/* Routes */}
+          <AnimatedRoutes setIsYouTubePlaying={setIsYouTubePlaying} handleMusicStart={handleMusicStart} />
+        </>
+      )}
     </Router>
   );
 }

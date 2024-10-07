@@ -127,17 +127,14 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
   };
 
   const togglePopup = () => {
-    console.log('Toggle popup button clicked');
     setShowPopup((prev) => !prev);
   };
 
   const goHome = () => {
-    console.log('Go home button clicked');
     navigate('/home');
   };
 
   const navigateToPhoto = (photoKey) => {
-    console.log(`Navigate to photo: ${photoKey}`);
     document.querySelector('.popup-content').classList.add('animate-popup-out'); // Trigger fade-out
     setTimeout(() => {
       setShowPopup(false);
@@ -148,7 +145,6 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
-        console.log('Clicked outside of popup');
         document.querySelector('.popup-content').classList.add('animate-popup-out');
         setTimeout(() => setShowPopup(false), 300); // Fade-out before closing
       }
@@ -164,7 +160,6 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
   }, [showPopup]);
 
   useEffect(() => {
-    console.log('YouTube event handling initialized');
     const handleYouTubeEvent = (event) => {
       const iframe = iframeRef.current;
       if (iframe && event.origin === 'https://www.youtube.com') {
@@ -172,11 +167,9 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
         if (data?.event === 'infoDelivery') {
           const playerState = data.info?.playerState;
           if (playerState === 1) {
-            console.log('YouTube video is playing');
             setIsYouTubePlaying(true);  // Update YouTube playing state
             onVideoPlay();
           } else if (playerState === 2) {
-            console.log('YouTube video is paused');
             setIsYouTubePlaying(false);  // Update YouTube playing state
             onVideoPause();
           }
