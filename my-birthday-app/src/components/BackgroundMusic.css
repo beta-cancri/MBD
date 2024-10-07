@@ -1,0 +1,57 @@
+/* BackgroundMusic.css */
+
+.background-music-container {
+    position: fixed;
+    bottom: 20px; /* Position it slightly above the bottom of the screen */
+    left: 20px; /* Position it slightly to the right of the screen's left edge */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.349); /* Slightly more opaque background */
+    padding: 15px; /* Increased padding for more spacing */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for a lifted look */
+    width: 400px; /* Increased width of the control panel */
+    max-height: 80vh; /* Restrict maximum height to prevent overflow */
+    overflow-y: auto; /* Allow scrolling if content exceeds the max height */
+}
+
+.volume-control-container {
+    margin-bottom: 15px; /* Add more space below the volume control */
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-button, .lyrics-button {
+    border: none;
+    background: none; /* Remove default button styling */
+    cursor: pointer;
+    margin: 5px;
+}
+
+.play-pause-icon, .lyrics-icon {
+    width: 70px; /* Adjust the size of the icons as needed */
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.music-button:hover .play-pause-icon, .lyrics-button:hover .lyrics-icon {
+    transform: scale(1.1); /* Slightly enlarge the icons on hover */
+}
+
+.lyrics {
+    margin-top: 15px;
+    text-align: left; /* Align lyrics to the left for readability */
+    font-size: 1.6rem; /* Increase the font size of the lyrics */
+    line-height: 1.6; /* Improve line spacing for readability */
+    max-height: 60vh; /* Restrict the height of the lyrics display */
+    overflow-y: auto; /* Make lyrics scrollable if they overflow */
+    padding: 10px;
+    background-color: rgba(240, 240, 240, 0.8); /* Light background for better contrast */
+    border-radius: 8px; /* Rounded corners for the lyrics box */
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle inset shadow */
+}

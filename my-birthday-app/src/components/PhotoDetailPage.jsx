@@ -49,7 +49,13 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
       collagePhoto7: 'QmcMb7Afx5Y',
       collagePhoto11: 'UnqE1DcLkgU'
     };
-    return `${base}${videoIds[photoKey]}?enablejsapi=1&origin=${window.location.origin}`;
+
+    // Return the full URL only if the photoKey has a valid video ID
+    if (videoIds[photoKey]) {
+      return `${base}${videoIds[photoKey]}?enablejsapi=1&origin=${window.location.origin}`;
+    }
+
+    return null; // Return null if there is no video ID for the photoKey
   };
 
   const getTitle = (photoKey) => {
@@ -221,6 +227,8 @@ const PhotoDetailPage = ({ onVideoPlay, onVideoPause, setIsYouTubePlaying }) => 
             ></iframe>
           </div>
         )}
+
+
         <div className="button-container">
           <img
             src="https://i.imgur.com/pRhHFEN.png"
